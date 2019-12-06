@@ -8,18 +8,18 @@ import (
 
 type user struct {
 	name string
-	age byte
+	age  byte
 }
 type manager struct {
 	user
 	title string
 }
 
-func (u user)ToString() string  {
+func (u user) ToString() string {
 	return fmt.Sprintf("%+v", u)
 }
 
-func (u user)Print()  {
+func (u user) Print() {
 	fmt.Printf("%+v", u)
 }
 
@@ -29,30 +29,56 @@ type Printer interface {
 
 type X int
 
-func (x *X)inc()  {
+func (x *X) inc() {
 	*x++
 }
 
 func task(id int32) {
-	for i:=0;i<10;i++ {
+	for i := 0; i < 10; i++ {
 		fmt.Printf("[%d : %d]", id, i)
 		time.Sleep(time.Second)
 	}
 }
+
+// channel与goroutine搭配，实现用通信代替内存共享的CSP模型
+
+// 消费者
+func consumer(data chan int, done chan bool) {
+	for x := range data {
+		fmt.Println("recv:", x)
+	}
+	done <- true
+}
+
+// 生产者
+func producer(data chan int) {
+	defer close(data)
+	for i := 0; i < 10; i++ {
+		data <- i
+	}
+
+}
+
 // go入口函数
 func main() {
-	var mm manager
-	mm.user.age = 18
-	mm.user.name = "sunmi"
-	fmt.Println(mm.ToString())
+	done := make(chan bool)
+	data := make(chan int)
 
-	var p Printer = mm
-	p.Print()
-
-	fmt.Println()
-	go task(12)
-	go task(15)
-	time.Sleep(time.Second * 11)
+	go consumer(data, done)
+	go producer(data)
+	<-done
+	//var mm manager
+	//mm.user.age = 18
+	//mm.user.name = "sunmi"
+	//fmt.Println(mm.ToString())
+	//
+	//var p Printer = mm
+	//p.Print()
+	//
+	//fmt.Println()
+	//go task(12)
+	//go task(15)
+	//time.Sleep(time.Second * 11)
 
 	//fmt.Println("Hello World")
 	//var xs X
@@ -88,7 +114,7 @@ func main() {
 	//
 	////x := []int{1,2,3}
 	//var x  = []int{1,2,3}
- 	//for index, number := range x{
+	//for index, number := range x{
 	//	fmt.Println(index,"->", number)
 	//}
 	//
@@ -103,9 +129,9 @@ func main() {
 	//fmt.Println(aaa)
 }
 
-func div(a int, b int) (int, error)  {
-	if b==0 {
+func div(a int, b int) (int, error) {
+	if b == 0 {
 		return 0, errors.New("0")
 	}
-	return a/b, nil
+	return a / b, nil
 }
