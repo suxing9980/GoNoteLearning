@@ -43,18 +43,18 @@ func task(id int32) {
 // channel与goroutine搭配，实现用通信代替内存共享的CSP模型
 
 // 消费者
-func consumer(data chan int, done chan bool) {
+func consumer(data chan *int, done chan bool) {
 	for x := range data {
-		fmt.Println("recv:", x)
+		fmt.Println("recv:", *x)
 	}
 	done <- true
 }
 
 // 生产者
-func producer(data chan int) {
+func producer(data chan *int) {
 	defer close(data)
 	for i := 0; i < 10; i++ {
-		data <- i
+		data <- &i
 	}
 
 }
@@ -62,7 +62,7 @@ func producer(data chan int) {
 // go入口函数
 func main() {
 	done := make(chan bool)
-	data := make(chan int)
+	data := make(chan *int)
 
 	go consumer(data, done)
 	go producer(data)
