@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"time"
 )
 
 type user struct {
@@ -18,10 +19,25 @@ func (u user)ToString() string  {
 	return fmt.Sprintf("%+v", u)
 }
 
+func (u user)Print()  {
+	fmt.Printf("%+v", u)
+}
+
+type Printer interface {
+	Print()
+}
+
 type X int
 
 func (x *X)inc()  {
 	*x++
+}
+
+func task(id int32) {
+	for i:=0;i<10;i++ {
+		fmt.Printf("[%d : %d]", id, i)
+		time.Sleep(time.Second)
+	}
 }
 // go入口函数
 func main() {
@@ -29,6 +45,15 @@ func main() {
 	mm.user.age = 18
 	mm.user.name = "sunmi"
 	fmt.Println(mm.ToString())
+
+	var p Printer = mm
+	p.Print()
+
+	fmt.Println()
+	go task(12)
+	go task(15)
+	time.Sleep(time.Second * 11)
+
 	//fmt.Println("Hello World")
 	//var xs X
 	//xs.inc()
