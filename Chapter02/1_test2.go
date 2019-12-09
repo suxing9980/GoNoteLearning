@@ -38,5 +38,16 @@ func main() {
 	fmt.Printf("a1 = %v, b1 = %v\n", a1, b1)
 	fmt.Printf("a2 = %v, b2 = %v\n", a2, b2)
 	fmt.Printf("a3 = %v, b3 = %v\n", a3, b3)
+	fmt.Println("*********************************")
+	const (
+		q         = iota
+		w float32 = iota
+		t
+		r
+	)
+	fmt.Printf("q= %T %v\n", q, q)
+	fmt.Printf("w= %T %v\n", w, w)
+	fmt.Printf("t= %T %v\n", t, t)
+	fmt.Printf("r= %T %v\n", r, r)
 
 }
