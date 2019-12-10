@@ -2,8 +2,23 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"strconv"
 )
+
+func makeSlice() []int {
+	s := make([]int, 0, 10)
+	fmt.Println(s, cap(s), len(s), reflect.TypeOf(s))
+	s = append(s, 10)
+	fmt.Println(s, cap(s), len(s), reflect.TypeOf(s))
+	return s
+}
+
+func makmap() map[string]int {
+	m := make(map[string]int)
+	m["a"] = 1
+	return m
+}
 
 func main() {
 	a, _ := strconv.ParseInt("1100100", 2, 32)
@@ -14,4 +29,6 @@ func main() {
 	fmt.Println("0b" + strconv.FormatInt(a, 10))
 	fmt.Println("0" + strconv.FormatInt(b, 8))
 	fmt.Println("0x" + strconv.FormatInt(c, 16))
+	fmt.Println("******************************")
+	makeSlice()
 }
