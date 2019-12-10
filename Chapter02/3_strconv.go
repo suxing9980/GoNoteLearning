@@ -17,6 +17,8 @@ func makeSlice() []int {
 func makmap() map[string]int {
 	m := make(map[string]int)
 	m["a"] = 1
+	m["b"] = 2
+	fmt.Println(m)
 	return m
 }
 
@@ -31,4 +33,5 @@ func main() {
 	fmt.Println("0x" + strconv.FormatInt(c, 16))
 	fmt.Println("******************************")
 	makeSlice()
+	makmap()
 }
