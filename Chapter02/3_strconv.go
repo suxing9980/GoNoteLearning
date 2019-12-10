@@ -14,12 +14,12 @@ func makeSlice() []int {
 	return s
 }
 
-func makmap() map[string]int {
-	m := make(map[string]int)
-	m["a"] = 1
-	m["b"] = 2
-	fmt.Println(m)
-	return m
+func makmap() (ma map[string]int) {
+	ma = make(map[string]int)
+	ma["a"] = 1
+	ma["b"] = 2
+	fmt.Println(ma)
+	return
 }
 
 func main() {
