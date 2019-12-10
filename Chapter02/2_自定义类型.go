@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type color byte
 
@@ -22,4 +25,9 @@ func main() {
 	test(100)
 	var x color = 2
 	test(x)
+
+	a, b, c := 100, 0144, 0x64
+	fmt.Println(a, b, c)
+	fmt.Printf("0b%b %#o %#x \n ", a, b, c)
+	fmt.Println(math.MinInt8, math.MaxInt8)
 }
