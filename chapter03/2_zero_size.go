@@ -9,5 +9,6 @@ import "fmt"
 func main() {
 	var a, b struct{}
 	// 对象的地址是否相等与具体版本有关
+	fmt.Println(&a, &b)
 	fmt.Println(&a == &b, &a == nil)
 }
