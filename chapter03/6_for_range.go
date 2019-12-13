@@ -10,5 +10,6 @@ func main() {
 	var data = [3]string{"a", "b", "c"}
 	for index, item := range data {
 		fmt.Println(index, item)
+		fmt.Println(&index, &item)
 	}
 }
