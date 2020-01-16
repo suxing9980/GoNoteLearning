@@ -6,12 +6,12 @@ import "fmt"
 // @Author  : Little柯南
 // @File    : 1_逃逸分析.go
 
-func getPoint() *int {
+func GetPoint() *int {
 	var num int = 5
 	return &num
 }
 
 func main() {
-	var p = getPoint()
+	var p = GetPoint()
 	fmt.Println("p=", p, " *p=", *p)
 }
