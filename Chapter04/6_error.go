@@ -13,8 +13,7 @@ import (
 func divZero(num, num2 int) (ret int, err error) {
 	if num2 == 0 {
 		ret = 0
-		err = errors.New("division by zero")
-		return
+		err = errors.New("Error:division by zero")
 	} else {
 		ret = num / num2
 		err = nil
@@ -23,6 +22,6 @@ func divZero(num, num2 int) (ret int, err error) {
 }
 
 func main() {
-	a, err := divZero(12, 0)
+	a, err := divZero(12, 2)
 	fmt.Println(a, err)
 }
