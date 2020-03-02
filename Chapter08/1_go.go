@@ -15,11 +15,10 @@ func test() {
 
 func main() {
 	go test()
-	func() {
-		for i := 0; i < 10; i++ {
-			fmt.Println("Hello goland!" + strconv.Itoa(i))
-			time.Sleep(time.Second)
-		}
-	}()
+
+	for i := 0; i < 10; i++ {
+		fmt.Println("Hello goland!" + strconv.Itoa(i))
+		time.Sleep(time.Second)
+	}
 	time.Sleep(time.Second)
 }
