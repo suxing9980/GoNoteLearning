@@ -18,14 +18,14 @@ func main() {
 			log.Print(err)
 			continue
 		}
-		handleConn(conn)
+		go handleConn(conn)
 	}
 }
 
 func handleConn(c net.Conn) {
 	defer c.Close()
 	for {
-		_, err := io.WriteString(c, time.Now().Format("12:00:00\n"))
+		_, err := io.WriteString(c, time.Now().Format("15:04:05\n"))
 		if err != nil {
 			return //例如链接断开
 		}
